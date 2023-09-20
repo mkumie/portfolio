@@ -3,11 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from "react-icons/ai";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import { BsFillPersonLinesFill } from "react-icons/bs";
-// import { useRouter } from "next/navigation";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { usePathname } from "next/navigation";
+import Connect from "./Connect";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -15,7 +13,6 @@ const Navbar = () => {
   const [navBg, setNavBg] = useState("#ecf0f3");
   const [linkColor, setLinkColor] = useState("#1f2937");
 
-  // const router = useRouter();
   const currentPath = usePathname();
 
   useEffect(() => {
@@ -24,10 +21,6 @@ const Navbar = () => {
       currentPath === "/crypto" ||
       currentPath === "/netflix" ||
       currentPath === "/linkedin"
-      // router.asPath === "/property" ||
-      // router.asPath === "/crypto" ||
-      // router.asPath === "/netflix" ||
-      // router.asPath === "/linkedin"
     ) {
       setNavBg("transparent");
       setLinkColor("#ecf0f3");
@@ -36,7 +29,6 @@ const Navbar = () => {
       setLinkColor("#1f2937");
     }
   }, [currentPath]);
-  // }, [router]);
 
   const handleNav = () => {
     setNav(!nav);
@@ -67,7 +59,10 @@ const Navbar = () => {
           <Image src="/YWDLogo.png" alt="/" width={125} height={50} />
         </Link>
         <div>
-          <ul style={{ color: `${linkColor}` }} className="hidden md:flex">
+          <ul
+            style={{ color: `${linkColor}` }}
+            className="hidden md:flex mr-10"
+          >
             <Link href="/">
               <li className="ml-10 text-sm uppercase hover:border-b">Home</li>
             </Link>
@@ -89,7 +84,7 @@ const Navbar = () => {
             </Link>
           </ul>
           <div onClick={handleNav} className="md:hidden">
-            <AiOutlineMenu size={25} />
+            <AiOutlineMenu style={{ color: `${linkColor}` }} size={25} />
           </div>
         </div>
       </div>
@@ -161,19 +156,8 @@ const Navbar = () => {
               <p className="uppercase tracking-widest text-[#5651e5]">
                 Let's Connect
               </p>
-              <div className="flex items-center justify-between my-4 w-full sm:w-[80%]">
-                <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300">
-                  <FaLinkedinIn />
-                </div>
-                <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300">
-                  <FaGithub />
-                </div>
-                <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300">
-                  <AiOutlineMail />
-                </div>
-                <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300">
-                  <BsFillPersonLinesFill />
-                </div>
+              <div onClick={() => setNav(false)}>
+                <Connect />
               </div>
             </div>
           </div>
@@ -186,3 +170,6 @@ const Navbar = () => {
 export default Navbar;
 
 // Finalise this and upload to your profile in GitHub, etc.
+// Change favourite icon as well
+// Complete sending email form in the contact component - yet to be programmed.
+// Work on how to display code from GitHub
