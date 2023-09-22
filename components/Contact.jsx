@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineChevronDoubleUp } from "react-icons/hi";
 import Connect from "./Connect";
 
@@ -13,11 +13,56 @@ const Contact = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
+  const [error, setError] = useState(false);
+  const [msgSent, setMsgSent] = useState(false);
+
+  // Check if input fields are not empty so that message div can be controlled (hidden)
+  const emptyFields =
+    name === "" &&
+    phone === "" &&
+    email === "" &&
+    subject === "" &&
+    message === "";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Here, send the form data to your server processing and email sending.
+    const formData = { name, subject, email, phone, message };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        // Handle successful submission (e.g., show a success message)
+        setName("");
+        setPhone("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+        setMsgSent(true);
+      } else {
+        // Handle submission error (e.g., show an error message)
+        setError(true);
+      }
+    } catch (error) {
+      // Handle any unexpected errors
+      setError;
+    }
   };
+
+  // Check if form is refilled after message successfully submitted and reset form responses/messages
+  useEffect(() => {
+    if (!emptyFields && (error || msgSent)) {
+      setError(false);
+      setMsgSent(false);
+    }
+  });
 
   return (
     <div id="contact" className="w-full lg:h-screen pt-10">
@@ -67,6 +112,7 @@ const Contact = () => {
                       className="border-2 rounded-lg p-3 flex border-gray-300"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="flex flex-col">
@@ -78,6 +124,7 @@ const Contact = () => {
                       className="border-2 rounded-lg p-3 flex border-gray-300"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
@@ -88,6 +135,7 @@ const Contact = () => {
                     className="border-2 rounded-lg p-3 flex border-gray-300"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="flex flex-col py-2">
@@ -97,6 +145,7 @@ const Contact = () => {
                     className="border-2 rounded-lg p-3 flex border-gray-300"
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="flex flex-col py-2">
@@ -106,7 +155,30 @@ const Contact = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     rows={10}
+                    required
                   ></textarea>
+                </div>
+                <div
+                  className={
+                    msgSent
+                      ? "text-green-400 border-2 p-2 bg-white rounded md:text-xl font-bold"
+                      : error
+                      ? "text-red-400 border-2 p-2 bg-white rounded md:text-xl font-bold"
+                      : !emptyFields && "hidden"
+                  }
+                >
+                  {msgSent && (
+                    <p>
+                      Thank you. Your message has been received. We will respond
+                      to you in the next 24 hours.
+                    </p>
+                  )}
+                  {error && (
+                    <p>
+                      Sorry. Your message has NOT been delivered. Please try
+                      again later.
+                    </p>
+                  )}
                 </div>
                 <button className="w-full p-4 text-gray-100 mt-4">
                   Send Message

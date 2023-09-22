@@ -171,5 +171,5 @@ export default Navbar;
 
 // Finalise this and upload to your profile in GitHub, etc.
 // Change favourite icon as well
-// Complete sending email form in the contact component - yet to be programmed.
+// Complete sending email form in the contact component - yet to be programmed. DONE!!!
 // Work on how to display code from GitHub
