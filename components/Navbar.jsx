@@ -170,6 +170,7 @@ const Navbar = () => {
 export default Navbar;
 
 // Finalise this and upload to your profile in GitHub, etc.
-// Change favourite icon as well
+// Change favourite icon as well. DONE!!!
 // Complete sending email form in the contact component - yet to be programmed. DONE!!!
 // Work on how to display code from GitHub
+// Work on projects - all to be listed. DONE!!!

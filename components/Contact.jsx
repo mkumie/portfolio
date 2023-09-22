@@ -164,7 +164,9 @@ const Contact = () => {
                       ? "text-green-400 border-2 p-2 bg-white rounded md:text-xl font-bold"
                       : error
                       ? "text-red-400 border-2 p-2 bg-white rounded md:text-xl font-bold"
-                      : !emptyFields && "hidden"
+                      : !emptyFields
+                      ? "hidden"
+                      : "hidden"
                   }
                 >
                   {msgSent && (
