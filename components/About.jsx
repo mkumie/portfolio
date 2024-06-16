@@ -17,20 +17,25 @@ const About = () => {
           </p>
           <h2 className="py-4">Who I Am</h2>
           <p className="py-2 text-gray-600">
-            I have spent the last {years} years in the education sector working
-            as a professional teacher. I have always had a knack for technology
-            and working with computers. In the early 2000's I started working
-            with HTML and programming in general but I took a turn in my career
-            to be where I am at now.
+            I am a passionate and dedicated developer with a strong background
+            in both education and technology. With over a decade of experience
+            in the professional world, I have cultivated a diverse skill set
+            that spans various programming languages and frameworks. My journey
+            in technology began with HTML and has since expanded to include
+            JavaScript, TypeScript, Python, and and modern web development
+            frameworks like React and Node.js.
           </p>
           <p className="py-2 text-gray-600">
-            However, I never lost interest in that space until in 2019, I
-            decided to give it a try again as my personal goals and aspirations
-            shifted. Starting in 2021, I committed myself in teaching myself
-            programming languages. Today, I am efficient with three progamming
-            languages and continuing to learn more new technologies. I am now
-            spending my time building projects with JavaScript, TypeScript,
-            Python, Firebase, and learning new technologies.
+            Driven by a commitment to continuous learning and personal growth, I
+            am always exploring new technologies and methodologies to enhance my
+            capabilities. I thrive on solving complex problems and building
+            innovative solutions that make a difference.
+          </p>
+          <p className="py-2 text-gray-600">
+            In my spare time, I enjoy working on personal projects, contributing
+            to open-source communities, and staying up-to-date with the latest
+            industry trends. I am excited to bring my expertise and enthusiasm
+            to new challenges and opportunities in the tech world.
           </p>
           <Link href="#projects">
             <p className="py-2 text-gray-600 underline cursor-pointer">
